@@ -1,35 +1,41 @@
-﻿using System.Net.Security;
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.InteropServices.Marshalling;
-
-
+﻿
+using System.Runtime.CompilerServices;
 Main();
 
-
-static void PrintMenu()
+void PrintMenu()
 {
-    // Construct the menu
-    Console.Clear();
     Console.WriteLine("Please enter a valid option from below:");
-    Console.WriteLine("1. Hello in French?");
-    Console.WriteLine("2. Hello in Spanish?");
-    Console.WriteLine("3. Hello in German?");
-    Console.WriteLine("4. Hello in Italian?");
+    Console.WriteLine("1. Hello in French");
+    Console.WriteLine("2. Hello in Spanish");
+    Console.WriteLine("3. Hello in German");
+    Console.WriteLine("4. Hello in Italian");
     Console.WriteLine("0. Exit application");
 }
 
-static int GetOption()
+int Getoption()
 {
-    
-    int option = Convert.ToInt32(Console.ReadLine());
-    return option;
-    
-}  
+    try
+    {
+        int option = Convert.ToInt32(Console.ReadLine());
+        return option;
+        
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error:{ex.Message}. Please enter a valid operation.");
+        return -1;
+    }
+    finally 
+    {
+        Console.WriteLine("Operation completed.");
+    }
+}
 
 static int GetMessage(int option)
 {
 
-    switch(option) {
+    switch (option)
+    {
         case 0:
             Console.WriteLine("Goodbye");
             break;
@@ -51,12 +57,9 @@ static int GetMessage(int option)
     }
     return option;
 }
-
-static void Main(int option)
+void Main()
 {
-    
     PrintMenu();
-    GetOption();
+    int option = Getoption();
     GetMessage(option);
 }
-
